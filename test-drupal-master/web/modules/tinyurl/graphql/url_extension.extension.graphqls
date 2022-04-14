@@ -1,0 +1,7 @@
+extend type Query {
+  url(id: Int!): url
+}
+
+extend type Mutation {
+   CreateUrl(data: urlInput): url
+}

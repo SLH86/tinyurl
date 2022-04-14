@@ -1,0 +1,12 @@
+type Mutation
+
+type url {
+  id: Int!
+  slug: String
+  url: String
+}
+
+input urlInput {
+  slug: String
+  url: String
+}

@@ -1,0 +1,15 @@
+uuid: 50abce49-a76b-4b25-ad57-511a9fdce3cf
+langcode: en
+status: true
+dependencies: {  }
+name: test
+label: test
+schema: composable
+schema_configuration:
+  composable:
+    extensions:
+      url_extension: url_extension
+endpoint: /test
+debug: true
+caching: true
+batching: true

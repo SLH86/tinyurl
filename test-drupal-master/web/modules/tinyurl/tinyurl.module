@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * Implements hook_entity_insert().
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\redirect\Entity\Redirect;
+
+function tinyurl_node_insert(NodeInterface $node) {
+  switch ($node->getType()) {
+    case "url":
+      if (empty($node->{'field_slug'}->getValue())) {
+        $node->set('field_slug', "redirect/" . $node->id());
+      } else {
+        $node->set('field_slug', $node->{'field_slug'}->getString() . "/" . $node->id());
+      }
+      Redirect::create([
+        'redirect_source' => 's/' . $node->{'field_slug'}->getString(),
+        'redirect_redirect' => $node->{'field_url'}->uri,
+        'language' => 'und',
+        'status_code' => 301,
+      ])->save();
+      
+      break;
+  }
+}
+
+
